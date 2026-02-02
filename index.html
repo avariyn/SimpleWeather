@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            background-image: 
+                radial-gradient(circle at 10% 20%, #1a1a1a 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, #111 0%, transparent 40%);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            background: #fff;
+            filter: blur(120px);
+            opacity: 0.03;
+            z-index: 1;
+            border-radius: 50%;
+            animation: move 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(10%, 10%); }
+        }
+
+        .glass-box {
+            position: relative;
+            width: 85%;
+            max-width: 600px;
+            padding: clamp(1.5rem, 8vw, 3.5rem);
+            background: var(--glass);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid var(--border);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: clamp(24px, 6vw, 40px);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 10vw, 3rem);
+            font-weight: 900;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -2px;
+        }
+
+        .meta {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #555;
+            margin-bottom: clamp(1.5rem, 5vw, 3rem);
+            display: block;
+        }
+
+        h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2rem;
+        }
+
+        p {
+            color: #888;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .secure-mail {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .secure-mail:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            .glass-box { width: 90%; padding: 2rem 1.5rem; }
+            .secure-mail { width: 100%; text-align: center; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+    <div class="blob" style="top: 0; left: 0;"></div>
+    <div class="blob" style="bottom: 0; right: 0; animation-delay: -10s;"></div>
+
+    <div class="glass-box">
+        <span class="meta">Simple Weather</span>
+        <h1>ZERO DATA.</h1>
+        <p>We don't collect it. We don't want it. We don't sell it.</p>
+        
+        <h2>Collection</h2>
+        <p>This application operates entirely on your local device. No databases, no tracking, no logs.</p>
+        
+        <h2>Monetization</h2>
+        <p>We are not a data broker. Our business model is privacy.</p>
+
+        <a href="#" class="secure-mail" id="contact-link">Reveal Contact Email</a>
+    </div>
+
+    <script>
+        const part1 = "YWRtaW4="; 
+        const part2 = "YWJieTA2NjYueHl6"; 
+        document.getElementById('contact-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            const u = atob(part1);
+            const d = atob(part2);
+            this.href = `mailto:${u}@${d}`;
+            this.textContent = `${u}@${d}`;
+            this.style.background = "#fff";
+            this.style.color = "#000";
+        });
+    </script>
+</body>
+</html>
